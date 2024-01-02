@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware";
+import { StatusCodes } from "http-status-codes";
 
 interface IDespesa {
   id: string;
@@ -10,13 +11,6 @@ interface IDespesa {
   dataDespesa: string;
   categoria: string;
   observacao: string;
-}
-
-interface IFilter {
-  descricao?: string | undefined;
-  categoria?: string | undefined;
-  dataVencimento?: string | undefined;
-  dataDespesa?: string | undefined;
 }
 
 export const createQueryValidation = validation((getSchema) => ({
@@ -31,17 +25,10 @@ export const createQueryValidation = validation((getSchema) => ({
       observacao: yup.string().required(),
     })
   ),
-  query: getSchema<IFilter>(
-    yup.object().shape({
-      descricao: yup.string().min(3),
-      categoria: yup.string(),
-      dataVencimento: yup.string(),
-      dataDespesa: yup.string(),
-    })
-  ),
 }));
 
 export const create = async (req: Request<{}, {}, IDespesa>, res: Response) => {
   console.log(req.body);
-  return res.send("Criado");
+
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json("Não implementado");
 };

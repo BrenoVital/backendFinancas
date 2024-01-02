@@ -1,9 +1,9 @@
 {
-  "name": "Financas",
-  "description": "Aplicação para controle de finanças",
+  "name": "Financas pessoais",
+  "description": "Aplicação backend para controle de finanças",
   "version": "0.0",
-  "main": "index.js",
-  "author": "Breno Vital",
+  "main": "index.ts",
+  "author": "BJV Tech Solutions",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.3.1",

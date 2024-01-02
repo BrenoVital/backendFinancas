@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { DespesasCrontoller } from "../controller/despesas";
+import { DespesasController } from "../controller/despesas";
 
 const router = Router();
 
-router.post("/despesas", DespesasCrontoller.create);
+router.post("/despesas", DespesasController.create);
 
 export { router };

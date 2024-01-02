@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import * as yup from "yup";
 
 interface IDespesa {
-  id: number;
+  id: string;
   descricao: string;
   valor: number;
   dataVencimento: string;
@@ -12,8 +12,8 @@ interface IDespesa {
   observacao: string;
 }
 
-const bodySchema = yup.object().shape({
-  id: yup.number().required(),
+const bodySchema: yup.Schema<IDespesa> = yup.object().shape({
+  id: yup.string().required(),
   descricao: yup.string().required().min(3),
   valor: yup.number().required(),
   dataVencimento: yup.string().required(),

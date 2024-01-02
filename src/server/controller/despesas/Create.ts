@@ -1,6 +1,6 @@
-import { Request, RequestHandler, Response } from "express";
-import { StatusCodes } from "http-status-codes";
+import { Request, Response } from "express";
 import * as yup from "yup";
+import { validation } from "../../shared/middleware";
 
 interface IDespesa {
   id: string;
@@ -12,34 +12,34 @@ interface IDespesa {
   observacao: string;
 }
 
-const bodySchema: yup.Schema<IDespesa> = yup.object().shape({
-  id: yup.string().required(),
-  descricao: yup.string().required().min(3),
-  valor: yup.number().required(),
-  dataVencimento: yup.string().required(),
-  dataDespesa: yup.string().required(),
-  categoria: yup.string().required(),
-  observacao: yup.string().required(),
-});
+interface IFilter {
+  descricao?: string | undefined;
+  categoria?: string | undefined;
+  dataVencimento?: string | undefined;
+  dataDespesa?: string | undefined;
+}
 
-export const createBodyValidator: RequestHandler = async (req, res, next) => {
-  try {
-    await bodySchema.validate(req.body, { abortEarly: false });
-    return next();
-  } catch (error) {
-    const yupError = error as yup.ValidationError;
-    const validationErrors: Record<string, string> = {};
-
-    yupError.inner.forEach((err) => {
-      if (!err.path) return;
-      validationErrors[err.path] = err.message;
-    });
-
-    return res.status(StatusCodes.ACCEPTED).json({
-      errors: validationErrors,
-    });
-  }
-};
+export const createQueryValidation = validation((getSchema) => ({
+  body: getSchema<IDespesa>(
+    yup.object().shape({
+      id: yup.string().required(),
+      descricao: yup.string().required().min(3),
+      valor: yup.number().required(),
+      dataVencimento: yup.string().required(),
+      dataDespesa: yup.string().required(),
+      categoria: yup.string().required(),
+      observacao: yup.string().required(),
+    })
+  ),
+  query: getSchema<IFilter>(
+    yup.object().shape({
+      descricao: yup.string().min(3),
+      categoria: yup.string(),
+      dataVencimento: yup.string(),
+      dataDespesa: yup.string(),
+    })
+  ),
+}));
 
 export const create = async (req: Request<{}, {}, IDespesa>, res: Response) => {
   console.log(req.body);

@@ -5,7 +5,7 @@ const router = Router();
 
 router.post(
   "/despesas",
-  DespesasController.createBodyValidator,
+  DespesasController.createQueryValidation,
   DespesasController.create
 );
 

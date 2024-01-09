@@ -1,6 +1,8 @@
+import { IDespesa } from "../../../models";
+
 declare module "knex/types/tables" {
   interface Tables {
-    // despesas: IDespesa;
+    despesas: IDespesa;
     // faturamento: IFaturamento;
     // usuario: IUsuario;
   }

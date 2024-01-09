@@ -4,7 +4,6 @@ import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 
 interface IDespesa {
-  id: string;
   descricao: string;
   valor: number;
   dataVencimento: string;
@@ -16,7 +15,6 @@ interface IDespesa {
 export const createQueryValidation = validation((getSchema) => ({
   body: getSchema<IDespesa>(
     yup.object().shape({
-      id: yup.string().required(),
       descricao: yup.string().required().min(3),
       valor: yup.number().required(),
       dataVencimento: yup.string().required(),

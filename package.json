@@ -1,5 +1,5 @@
 {
-  "name": "Financas pessoais",
+  "name": "Financas",
   "description": "Aplicação backend para controle de finanças",
   "version": "0.0",
   "main": "index.ts",

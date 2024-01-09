@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
+import { IDespesa } from "../../database/models";
 
-interface IDespesa {
+interface IBodyProps extends Omit<IDespesa, "id"> {
   descricao: string;
   valor: number;
   dataVencimento: string;
@@ -13,7 +14,7 @@ interface IDespesa {
 }
 
 export const createQueryValidation = validation((getSchema) => ({
-  body: getSchema<IDespesa>(
+  body: getSchema<IBodyProps>(
     yup.object().shape({
       descricao: yup.string().required().min(3),
       valor: yup.number().required(),

@@ -3,8 +3,9 @@ import * as yup from "yup";
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 import { IParamProps } from "./GetById";
+import { IDespesa } from "../../database/models";
 
-interface IBodyProps {
+interface IBodyProps extends Omit<IDespesa, "id"> {
   descricao: string;
   valor: number;
   dataVencimento: string;

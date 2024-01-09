@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev ./src/index.ts",
-    "preproduction": "tsc",
+    "postinstall": "tsc",
     "production": "node ./build/index.js",
     "test": "jest"
   },

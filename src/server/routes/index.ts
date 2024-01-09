@@ -1,8 +1,9 @@
 import { Router } from "express";
 import { DespesasController } from "../controller/despesas";
+import { FaturamentoController } from "../controller/faturamento";
 
 const router = Router();
-
+//  DespesasController
 router.get(
   "/despesas",
   DespesasController.getAllValidation,
@@ -31,6 +32,14 @@ router.delete(
   "/despesas/:id",
   DespesasController.deleteByIdValidation,
   DespesasController.deleteById
+);
+
+// FaturamentoController
+
+router.post(
+  "/faturamento",
+  FaturamentoController.create,
+  FaturamentoController.createQueryValidation
 );
 
 export { router };

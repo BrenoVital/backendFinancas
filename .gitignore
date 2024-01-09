@@ -1,3 +1,4 @@
 node_modules
 .env
 estudo.md
+/coverage

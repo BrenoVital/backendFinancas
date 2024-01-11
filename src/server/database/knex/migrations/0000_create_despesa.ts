@@ -7,8 +7,8 @@ export async function up(knex: Knex) {
       table.bigIncrements("id").primary();
       table.string("descricao").notNullable();
       table.decimal("valor").notNullable();
-      table.date("data_vencimento").notNullable();
-      table.date("data_despesa").notNullable();
+      table.date("dataVencimento").notNullable();
+      table.date("dataDespesa").notNullable();
       table.string("categoria").notNullable();
       table.string("observacao").notNullable();
       table.comment("Tabela de despesas");

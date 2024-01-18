@@ -6,7 +6,7 @@ server.listen(process.env.PORT, () => {
 });
 
 const startServer = () => {
-  server.listen(process.env.PORT, () => {
+  server.listen(process.env.PORT || 3333, () => {
     console.log(`App rodando na porta ${process.env.PORT}`);
   });
 };

@@ -33,12 +33,12 @@ export const test: Knex.Config = { ...development, connection: ":memory:" };
 
 export const production: Knex.Config = {
   client: "pg",
-  migrations: {
-    directory: path.resolve(__dirname, "..", "migrations"),
-  },
   // migrations: {
-  //   tableName: "knex_migrations",
+  //   directory: path.resolve(__dirname, "..", "migrations"),
   // },
+  migrations: {
+    tableName: "knex_migrations",
+  },
   seeds: {
     directory: path.resolve(__dirname, "..", "seeds"),
   },

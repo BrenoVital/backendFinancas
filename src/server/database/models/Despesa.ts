@@ -6,4 +6,6 @@ export interface IDespesa {
   dataPagamento: string;
   categoria: string;
   observacao: string;
+  pago: boolean;
+  arquivo: string;
 }

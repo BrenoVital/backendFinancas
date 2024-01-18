@@ -19,7 +19,6 @@ export async function up(knex: Knex) {
       console.log(`Tabela ${ETablesNames.despesa} criada com sucesso.`);
     });
 }
-
 export async function down(knex: Knex) {
   return knex.schema.dropTable(ETablesNames.despesa).then(() => {
     console.log(`Tabela ${ETablesNames.despesa} excluída com sucesso.`);

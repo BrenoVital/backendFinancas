@@ -36,9 +36,6 @@ export const production: Knex.Config = {
   migrations: {
     directory: path.resolve(__dirname, "..", "migrations"),
   },
-  // migrations: {
-  //   tableName: "knex_migrations",
-  // },
   seeds: {
     directory: path.resolve(__dirname, "..", "seeds"),
   },

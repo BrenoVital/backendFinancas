@@ -12,6 +12,8 @@ interface IBodyProps extends Omit<IDespesa, "id"> {
   dataPagamento: string;
   categoria: string;
   observacao: string;
+  pago: boolean;
+  arquivo: string;
 }
 
 export const createQueryValidation = validation((getSchema) => ({
@@ -23,6 +25,8 @@ export const createQueryValidation = validation((getSchema) => ({
       dataPagamento: yup.string().required(),
       categoria: yup.string().required(),
       observacao: yup.string().required(),
+      pago: yup.boolean().required().default(false),
+      arquivo: yup.string().required(),
     })
   ),
 }));

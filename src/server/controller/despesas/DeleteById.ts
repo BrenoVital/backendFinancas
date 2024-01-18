@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 import { IParamProps } from "./GetById";
+import { DespesasProvider } from "../../database/providers/despesas";
 
 export const deleteByIdValidation = validation((getSchema) => ({
   params: getSchema<IParamProps>(
@@ -13,10 +14,18 @@ export const deleteByIdValidation = validation((getSchema) => ({
 }));
 
 export const deleteById = async (req: Request<IParamProps>, res: Response) => {
-  if (Number(req.params.id) === 99999) {
+  if (!req.params.id) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: {
+        default: 'O parâmetro "id" precisa ser informado.',
+      },
+    });
+  }
+  const result = await DespesasProvider.deleteById(req.params.id);
+  if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       errors: {
-        default: "Registro não encontrado",
+        default: result.message,
       },
     });
   }

@@ -22,3 +22,9 @@ if (process.env.IS_LOCALHOST !== "true") {
 } else {
   startServer();
 }
+
+// app.js
+const { getPgVersion } = require("./database");
+
+// Chame a função para testar a conexão com o banco de dados
+getPgVersion();

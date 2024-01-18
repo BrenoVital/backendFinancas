@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import { ETablesNames } from "../../ETablesNames";
+import { ETablesNames } from "../ETablesNames";
 
 export async function up(knex: Knex) {
   return knex.schema

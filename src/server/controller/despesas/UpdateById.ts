@@ -13,6 +13,8 @@ interface IBodyProps extends Omit<IDespesa, "id"> {
   dataPagamento: string;
   categoria: string;
   observacao: string;
+  pago: boolean;
+  arquivo: string;
 }
 
 export const updateByIdValidation = validation((getSchema) => ({
@@ -24,6 +26,8 @@ export const updateByIdValidation = validation((getSchema) => ({
       dataPagamento: yup.string().required(),
       categoria: yup.string().required(),
       observacao: yup.string().required(),
+      arquivo: yup.string().required(),
+      pago: yup.boolean().required().default(false),
     })
   ),
   params: getSchema<IParamProps>(

@@ -1,4 +1,4 @@
-import { Knex } from "./server/database/knex/types";
+import { Knex } from "./server/database/knex";
 import server from "./server/server";
 
 server.listen(process.env.PORT, () => {

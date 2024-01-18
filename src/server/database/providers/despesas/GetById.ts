@@ -1,5 +1,5 @@
 import { ETablesNames } from "../../ETablesNames";
-import { Knex } from "../../knex/types";
+import { Knex } from "../../knex";
 import { IDespesa } from "../../models";
 
 export const getById = async (

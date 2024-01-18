@@ -1,6 +1,6 @@
 import { IDespesa } from "../../models";
 import { ETablesNames } from "../../ETablesNames";
-import { Knex } from "../../knex/types";
+import { Knex } from "../../knex";
 
 export const create = async (
   despesa: Omit<IDespesa, "id">

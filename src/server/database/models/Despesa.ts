@@ -3,7 +3,7 @@ export interface IDespesa {
   descricao: string;
   valor: number;
   dataVencimento: string;
-  dataDespesa: string;
+  dataPagamento: string;
   categoria: string;
   observacao: string;
 }

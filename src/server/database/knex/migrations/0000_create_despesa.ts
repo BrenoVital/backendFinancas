@@ -8,9 +8,11 @@ export async function up(knex: Knex) {
       table.string("descricao").notNullable();
       table.decimal("valor").notNullable();
       table.date("dataVencimento").notNullable();
-      table.date("dataDespesa").notNullable();
+      table.date("dataPagamento").notNullable();
       table.string("categoria").notNullable();
       table.string("observacao").notNullable();
+      table.boolean("pago").notNullable().defaultTo(false);
+      table.binary("arquivo").nullable();
       table.comment("Tabela de despesas");
     })
     .then(() => {

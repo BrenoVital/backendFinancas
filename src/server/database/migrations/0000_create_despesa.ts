@@ -1,4 +1,4 @@
-import type { Knex } from "knex";
+import { Knex } from "knex";
 import { ETablesNames } from "../ETablesNames";
 
 export async function up(knex: Knex) {
@@ -7,12 +7,12 @@ export async function up(knex: Knex) {
       table.bigIncrements("id").primary();
       table.string("descricao").notNullable();
       table.decimal("valor").notNullable();
-      table.date("dataVencimento").notNullable();
-      table.date("dataPagamento").notNullable();
+      table.date("vencimento").notNullable();
+      table.date("pagamento").notNullable();
       table.string("categoria").notNullable();
       table.string("observacao").notNullable();
       table.boolean("pago").notNullable().defaultTo(false);
-      table.binary("arquivo").nullable();
+      // table.binary("arquivo").nullable();
       table.comment("Tabela de despesas");
     })
     .then(() => {

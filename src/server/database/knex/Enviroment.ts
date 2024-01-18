@@ -2,6 +2,8 @@ import { Knex } from "knex";
 import path from "path";
 require("dotenv").config();
 
+const env = process.env.NODE_ENV || "development";
+
 export const development: Knex.Config = {
   client: "sqlite3",
   useNullAsDefault: true,
@@ -31,22 +33,29 @@ export const development: Knex.Config = {
 export const test: Knex.Config = { ...development, connection: ":memory:" };
 
 export const production: Knex.Config = {
-  client: "postgresql",
+  client: "pg",
 
+  // migrations: {
+  //   directory: path.resolve(__dirname, "..", "migrations"),
+  // },
   migrations: {
-    directory: path.resolve(__dirname, "..", "migrations"),
+    tableName: "knex_migrations",
   },
   seeds: {
     directory: path.resolve(__dirname, "..", "seeds"),
   },
   connection: {
-    host: process.env.DB_HOST,
-    database: process.env.DATABASE_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
     port: Number(process.env.DB_PORT || 5432),
     ssl: {
       rejectUnauthorized: false,
     },
+  },
+  pool: {
+    min: 2,
+    max: 10,
   },
 };

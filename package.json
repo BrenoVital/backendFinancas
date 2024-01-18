@@ -24,7 +24,7 @@
     "test": "jest",
     "vercel-build": "npx knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:latest",
     "knex:seed": "knex --knexfile ./src/server/database/knex/Enviroment.ts seed:run",
-    "knex:migrate": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest",
+    "knex:migrate": "knex --knexfile ./src/server/database/knex/Enviroment.ts  migrate:latest",
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:rollback",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:rollback --all"
   },

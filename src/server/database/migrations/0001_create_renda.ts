@@ -6,8 +6,8 @@ export async function up(knex: Knex) {
     .createTable(ETablesNames.renda, (table) => {
       table.bigIncrements("id").primary().index();
       table.string("descricao").index().notNullable();
-      table.float("valor").notNullable();
-      table.string("dataRecebimento").notNullable();
+      table.decimal("valor").notNullable();
+      table.date("dataRecebimento").notNullable();
       table.comment("Tabela de rendas");
     })
     .then(() => {

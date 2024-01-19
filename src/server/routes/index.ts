@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { DespesasController } from "../controller/despesas";
-import { RendaController } from "../controller/renda";
+import { RendasController } from "../controller/renda";
 
 const router = Router();
 //  DespesasController
@@ -36,30 +36,34 @@ router.delete(
 
 // RendaController
 
-router.get("/rendas", RendaController.getAllValidation, RendaController.getAll);
+router.get(
+  "/rendas",
+  RendasController.getAllValidation,
+  RendasController.getAll
+);
 
 router.get(
   "/rendas/:id",
-  RendaController.getByIdValidation,
-  RendaController.getById
+  RendasController.getByIdValidation,
+  RendasController.getById
 );
 
 router.put(
   "/rendas/:id",
-  RendaController.updateByIdValidation,
-  RendaController.updateById
+  RendasController.updateByIdValidation,
+  RendasController.updateById
 );
 
 router.post(
   "/rendas",
-  RendaController.create,
-  RendaController.createQueryValidation
+  RendasController.create,
+  RendasController.createQueryValidation
 );
 
 router.delete(
   "/rendas/:id",
-  RendaController.deleteByIdValidation,
-  RendaController.deleteById
+  RendasController.deleteByIdValidation,
+  RendasController.deleteById
 );
 
 export { router };

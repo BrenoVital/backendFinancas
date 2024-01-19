@@ -8,7 +8,7 @@ export const getAll = async (
   filter: string
 ): Promise<IRenda[] | Error | undefined> => {
   try {
-    const result = await Knex(ETablesNames.despesa)
+    const result = await Knex(ETablesNames.renda)
       .select("*")
       .orWhere("descricao", "like", `%${filter}%`)
       .offset(page * take)

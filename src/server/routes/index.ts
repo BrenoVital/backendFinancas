@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { DespesasController } from "../controller/despesas";
-import { RendasController } from "../controller/renda";
+import { RendasController } from "../controller/rendas";
 import { CategoriasController } from "../controller/categorias";
+import { UsuariosController } from "../controller/usuarios";
 
 const router = Router();
 //  DespesasController
@@ -97,6 +98,19 @@ router.delete(
   "/categorias/:id",
   CategoriasController.deleteByIdValidation,
   CategoriasController.deleteById
+);
+
+// LoginController
+
+router.post(
+  "/entrar",
+  UsuariosController.signInValidation,
+  UsuariosController.signIn
+);
+router.post(
+  "/cadastrar",
+  UsuariosController.signUpValidation,
+  UsuariosController.signUp
 );
 
 export { router };

@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 import { IRenda } from "../../database/models";
+import { RendasProvider } from "../../database/providers/rendas";
 
 interface IBodyProps extends Omit<IRenda, "id"> {
   descricao: string;
@@ -21,7 +22,13 @@ export const createQueryValidation = validation((getSchema) => ({
 }));
 
 export const create = async (req: Request<{}, {}, IRenda>, res: Response) => {
-  console.log(req.body);
-
-  return res.status(StatusCodes.ACCEPTED).json("Renda criada com sucesso!");
+  const result = await RendasProvider.create(req.body);
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+  return res.status(StatusCodes.CREATED).json(result);
 };

@@ -5,7 +5,7 @@ import * as getByIdValidation from "./GetById";
 import * as deleteById from "./DeleteById";
 import * as updateById from "./UpdateById";
 
-export const FaturamentoController = {
+export const RendaController = {
   ...create,
   ...getAll,
   ...getById,

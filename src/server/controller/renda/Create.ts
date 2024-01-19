@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 
-interface IFaturamento {
+interface IRenda {
   id: string;
   valor: number;
   dataEntrada: string;
@@ -11,7 +11,7 @@ interface IFaturamento {
 }
 
 export const createQueryValidation = validation((getSchema) => ({
-  body: getSchema<IFaturamento>(
+  body: getSchema<IRenda>(
     yup.object().shape({
       id: yup.string().required(),
       valor: yup.number().required(),
@@ -21,13 +21,8 @@ export const createQueryValidation = validation((getSchema) => ({
   ),
 }));
 
-export const create = async (
-  req: Request<{}, {}, IFaturamento>,
-  res: Response
-) => {
+export const create = async (req: Request<{}, {}, IRenda>, res: Response) => {
   console.log(req.body);
 
-  return res
-    .status(StatusCodes.ACCEPTED)
-    .json("Faturamento criado com sucesso");
+  return res.status(StatusCodes.ACCEPTED).json("Renda criada com sucesso!");
 };

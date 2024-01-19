@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { DespesasController } from "../controller/despesas";
-import { FaturamentoController } from "../controller/faturamento";
+import { RendaController } from "../controller/renda";
 
 const router = Router();
 //  DespesasController
@@ -34,12 +34,12 @@ router.delete(
   DespesasController.deleteById
 );
 
-// FaturamentoController
+// RendaController
 
 router.post(
-  "/faturamento",
-  FaturamentoController.create,
-  FaturamentoController.createQueryValidation
+  "/renda",
+  RendaController.create,
+  RendaController.createQueryValidation
 );
 
 export { router };

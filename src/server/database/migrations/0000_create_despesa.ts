@@ -9,7 +9,7 @@ export async function up(knex: Knex) {
       table.decimal("valor").notNullable();
       table.date("vencimento").notNullable();
       table.date("pagamento").notNullable();
-      table.string("categoria").notNullable();
+      table.string("categoriaId").notNullable();
       table.string("observacao").notNullable();
       table.boolean("pago").notNullable().defaultTo(false);
       // table.binary("arquivo").nullable();

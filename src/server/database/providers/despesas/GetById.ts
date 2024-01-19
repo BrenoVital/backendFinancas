@@ -7,13 +7,22 @@ export const getById = async (
 ): Promise<IDespesa | Error | undefined> => {
   try {
     const result = await Knex(ETablesNames.despesa)
-      .select("*")
-      .where("id", "=", id)
+      .join(
+        ETablesNames.categoria,
+        `${ETablesNames.despesa}.categoria_id`,
+        "=",
+        `${ETablesNames.categoria}.id`
+      )
+      .select(
+        `${ETablesNames.despesa}.*`,
+        `${ETablesNames.categoria}.nomeCategoria as categoria`
+      )
+      .where(`${ETablesNames.despesa}.id`, "=", id)
       .first();
 
     if (result) return result;
 
-    return new Error("Despesa não encontrado");
+    return new Error("Despesa não encontrada");
   } catch (error) {
     console.log(error);
     return new Error("Erro ao consultar a despesa");

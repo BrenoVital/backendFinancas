@@ -36,28 +36,28 @@ router.delete(
 
 // RendaController
 
-router.get("/renda", RendaController.getAllValidation, RendaController.getAll);
+router.get("/rendas", RendaController.getAllValidation, RendaController.getAll);
 
 router.get(
-  "/renda/:id",
+  "/rendas/:id",
   RendaController.getByIdValidation,
   RendaController.getById
 );
 
 router.put(
-  "/renda/:id",
+  "/rendas/:id",
   RendaController.updateByIdValidation,
   RendaController.updateById
 );
 
 router.post(
-  "/renda",
+  "/rendas",
   RendaController.create,
   RendaController.createQueryValidation
 );
 
 router.delete(
-  "/renda/:id",
+  "/rendas/:id",
   RendaController.deleteByIdValidation,
   RendaController.deleteById
 );

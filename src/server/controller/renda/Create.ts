@@ -2,21 +2,20 @@ import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
+import { IRenda } from "../../database/models";
 
-interface IRenda {
-  id: string;
+interface IBodyProps extends Omit<IRenda, "id"> {
+  descricao: string;
   valor: number;
-  dataEntrada: string;
-  categoria: string;
+  dataRecebimento: string;
 }
 
 export const createQueryValidation = validation((getSchema) => ({
-  body: getSchema<IRenda>(
+  body: getSchema<IBodyProps>(
     yup.object().shape({
-      id: yup.string().required(),
+      descricao: yup.string().required(),
       valor: yup.number().required(),
-      dataEntrada: yup.string().required(),
-      categoria: yup.string().required(),
+      dataRecebimento: yup.string().required(),
     })
   ),
 }));

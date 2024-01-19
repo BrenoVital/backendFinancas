@@ -9,12 +9,11 @@ import { DespesasProvider } from "../../database/providers/despesas";
 interface IBodyProps extends Omit<IDespesa, "id"> {
   descricao: string;
   valor: number;
-  dataVencimento: string;
-  dataPagamento: string;
+  vencimento: string;
+  pagamento: string;
   categoria: string;
   observacao: string;
   pago: boolean;
-  arquivo: string;
 }
 
 export const updateByIdValidation = validation((getSchema) => ({
@@ -22,11 +21,10 @@ export const updateByIdValidation = validation((getSchema) => ({
     yup.object().shape({
       descricao: yup.string().required().min(3),
       valor: yup.number().required(),
-      dataVencimento: yup.string().required(),
-      dataPagamento: yup.string().required(),
+      vencimento: yup.string().required(),
+      pagamento: yup.string().required(),
       categoria: yup.string().required(),
       observacao: yup.string().required(),
-      arquivo: yup.string().required(),
       pago: yup.boolean().required().default(false),
     })
   ),

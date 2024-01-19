@@ -13,7 +13,9 @@ export async function up(knex: Knex) {
         .integer("categoria_id")
         .unsigned()
         .references("id")
-        .inTable("categoria");
+        .inTable("categoria")
+        .onUpdate("CASCADE")
+        .onDelete("RESTRICT");
       table.string("observacao").notNullable();
       table.boolean("pago").notNullable().defaultTo(false);
       // table.binary("arquivo").nullable();

@@ -4,7 +4,7 @@ export interface IDespesa {
   valor: number;
   vencimento: string;
   pagamento: string;
-  categoria: string;
+  categoriaId: string;
   observacao: string;
   pago: boolean;
 }

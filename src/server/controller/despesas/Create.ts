@@ -10,7 +10,7 @@ interface IBodyProps extends Omit<IDespesa, "id"> {
   valor: number;
   vencimento: string;
   pagamento: string;
-  categoria: string;
+  categoriaId: string;
   observacao: string;
   pago: boolean;
 }
@@ -22,7 +22,7 @@ export const createQueryValidation = validation((getSchema) => ({
       valor: yup.number().required(),
       vencimento: yup.string().required(),
       pagamento: yup.string().required(),
-      categoria: yup.string().required(),
+      categoriaId: yup.string().required(),
       observacao: yup.string().required(),
       pago: yup.boolean().required().default(false),
     })

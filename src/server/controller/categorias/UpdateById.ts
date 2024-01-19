@@ -1,31 +1,19 @@
-import { Request, Response } from "express";
-import * as yup from "yup";
-import { validation } from "../../shared/middleware";
 import { StatusCodes } from "http-status-codes";
 import { IParamProps } from "./GetById";
-import { IDespesa } from "../../database/models";
-import { DespesasProvider } from "../../database/providers/despesas";
+import { Request, Response } from "express";
+import { validation } from "../../shared/middleware";
+import * as yup from "yup";
+import { ICategoria } from "../../database/models";
+import { CategoriasProvider } from "../../database/providers/categorias";
 
-interface IBodyProps extends Omit<IDespesa, "id"> {
-  descricao: string;
-  valor: number;
-  vencimento: string;
-  pagamento: string;
-  categoriaId: string;
-  observacao: string;
-  pago: boolean;
+interface IBodyProps extends Omit<ICategoria, "id"> {
+  nomeCategoria: string;
 }
 
 export const updateByIdValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(
     yup.object().shape({
-      descricao: yup.string().required().min(3),
-      valor: yup.number().required(),
-      vencimento: yup.string().required(),
-      pagamento: yup.string().required(),
-      categoriaId: yup.string().required(),
-      observacao: yup.string().required(),
-      pago: yup.boolean().required().default(false),
+      nomeCategoria: yup.string().required().min(3),
     })
   ),
   params: getSchema<IParamProps>(
@@ -47,7 +35,7 @@ export const updateById = async (
     });
   }
 
-  const result = await DespesasProvider.updateById(req.params.id, req.body);
+  const result = await CategoriasProvider.updateById(req.params.id, req.body);
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       errors: {

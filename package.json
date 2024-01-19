@@ -22,7 +22,7 @@
     "postinstall": "tsc",
     "production": "node ./build/index.js",
     "test": "jest",
-    "vercel-build": "npx knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:latest",
+    "vercel-build": "npx knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:rollback --all",
     "knex:seed": "knex --knexfile ./src/server/database/knex/Enviroment.ts seed:run",
     "knex:migrate": "knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:latest",
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Enviroment.ts migrate:rollback",

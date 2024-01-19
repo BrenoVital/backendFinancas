@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { DespesasController } from "../controller/despesas";
 import { RendasController } from "../controller/renda";
+import { CategoriasController } from "../controller/categorias";
 
 const router = Router();
 //  DespesasController
@@ -64,6 +65,38 @@ router.delete(
   "/rendas/:id",
   RendasController.deleteByIdValidation,
   RendasController.deleteById
+);
+
+// CategoriaController
+
+router.get(
+  "/categorias",
+  CategoriasController.getAllValidation,
+  CategoriasController.getAll
+);
+
+router.get(
+  "/categorias/:id",
+  CategoriasController.getByIdValidation,
+  CategoriasController.getById
+);
+
+router.put(
+  "/categorias/:id",
+  CategoriasController.updateByIdValidation,
+  CategoriasController.updateById
+);
+
+router.post(
+  "/categorias",
+  CategoriasController.create,
+  CategoriasController.createQueryValidation
+);
+
+router.delete(
+  "/categorias/:id",
+  CategoriasController.deleteByIdValidation,
+  CategoriasController.deleteById
 );
 
 export { router };

@@ -8,7 +8,7 @@ export async function up(knex: Knex) {
       table.string("nome").notNullable().checkLength(">=", 3);
       table.string("email").unique().notNullable().checkLength(">=", 5);
       table.string("senha").index().notNullable().checkLength(">=", 6);
-      table.comment("Tabela de usuários do sistema.");
+      table.comment("Tabela de usuários do sistema financeiro.");
     })
     .then(() => {
       console.log(`Tabela ${ETablesNames.usuario} criada com sucesso.`);

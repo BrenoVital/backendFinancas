@@ -3,35 +3,43 @@ import { DespesasController } from "../controller/despesas";
 import { RendasController } from "../controller/rendas";
 import { CategoriasController } from "../controller/categorias";
 import { UsuariosController } from "../controller/usuarios";
+import { ensureAuthenticated } from "../shared/middleware";
 
 const router = Router();
+
 //  DespesasController
+
 router.get(
   "/despesas",
+  ensureAuthenticated,
   DespesasController.getAllValidation,
   DespesasController.getAll
 );
 
 router.get(
   "/despesas/:id",
+  ensureAuthenticated,
   DespesasController.getByIdValidation,
   DespesasController.getById
 );
 
 router.put(
   "/despesas/:id",
+  ensureAuthenticated,
   DespesasController.updateByIdValidation,
   DespesasController.updateById
 );
 
 router.post(
   "/despesas",
+  ensureAuthenticated,
   DespesasController.createQueryValidation,
   DespesasController.create
 );
 
 router.delete(
   "/despesas/:id",
+  ensureAuthenticated,
   DespesasController.deleteByIdValidation,
   DespesasController.deleteById
 );
@@ -40,30 +48,35 @@ router.delete(
 
 router.get(
   "/rendas",
+  ensureAuthenticated,
   RendasController.getAllValidation,
   RendasController.getAll
 );
 
 router.get(
   "/rendas/:id",
+  ensureAuthenticated,
   RendasController.getByIdValidation,
   RendasController.getById
 );
 
 router.put(
   "/rendas/:id",
+  ensureAuthenticated,
   RendasController.updateByIdValidation,
   RendasController.updateById
 );
 
 router.post(
   "/rendas",
+  ensureAuthenticated,
   RendasController.create,
   RendasController.createQueryValidation
 );
 
 router.delete(
   "/rendas/:id",
+  ensureAuthenticated,
   RendasController.deleteByIdValidation,
   RendasController.deleteById
 );
@@ -72,30 +85,35 @@ router.delete(
 
 router.get(
   "/categorias",
+  ensureAuthenticated,
   CategoriasController.getAllValidation,
   CategoriasController.getAll
 );
 
 router.get(
   "/categorias/:id",
+  ensureAuthenticated,
   CategoriasController.getByIdValidation,
   CategoriasController.getById
 );
 
 router.put(
   "/categorias/:id",
+  ensureAuthenticated,
   CategoriasController.updateByIdValidation,
   CategoriasController.updateById
 );
 
 router.post(
   "/categorias",
+  ensureAuthenticated,
   CategoriasController.create,
   CategoriasController.createQueryValidation
 );
 
 router.delete(
   "/categorias/:id",
+  ensureAuthenticated,
   CategoriasController.deleteByIdValidation,
   CategoriasController.deleteById
 );
@@ -107,6 +125,7 @@ router.post(
   UsuariosController.signInValidation,
   UsuariosController.signIn
 );
+
 router.post(
   "/cadastrar",
   UsuariosController.signUpValidation,

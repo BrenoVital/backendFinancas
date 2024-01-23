@@ -28,11 +28,23 @@ export const getById = async (req: Request<IParamProps>, res: Response) => {
   const result = await RendasProvider.getById(req.params.id);
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: result.message,
-      },
+      value: [],
+      count: 0,
+      hasSuccess: false,
+      hasError: true,
+      errors: [result.message],
+      httpStatusCode: "INTERNAL_SERVER_ERROR",
+      dataRequisicao: new Date().toISOString(),
     });
   }
 
-  return res.status(StatusCodes.OK).json(result);
+  return res.status(StatusCodes.OK).json({
+    value: result,
+    count: 1,
+    hasSuccess: true,
+    hasError: false,
+    errors: [],
+    httpStatusCode: "OK",
+    dataRequisicao: new Date().toISOString(),
+  });
 };

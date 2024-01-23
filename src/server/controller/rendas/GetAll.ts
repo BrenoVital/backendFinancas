@@ -33,18 +33,33 @@ export const getAll = async (
 
   if (result instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: result.message,
-      },
+      value: [],
+      count: 0,
+      hasSuccess: false,
+      hasError: true,
+      errors: [result.message],
+      httpStatusCode: "INTERNAL_SERVER_ERROR",
+      dataRequisicao: new Date().toISOString(),
     });
   } else if (count instanceof Error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: count.message,
-      },
+      value: [],
+      count: 0,
+      hasSuccess: false,
+      hasError: true,
+      errors: [count.message],
+      httpStatusCode: "INTERNAL_SERVER_ERROR",
+      dataRequisicao: new Date().toISOString(),
     });
   }
-  res.setHeader("access-control-expose-headers", "X-Total-Count");
-  res.setHeader("X-Total-Count", count);
-  return res.status(StatusCodes.OK).json(result);
+
+  return res.status(StatusCodes.OK).json({
+    value: result,
+    count: count,
+    hasSuccess: true,
+    hasError: false,
+    errors: [],
+    httpStatusCode: "OK",
+    dataRequisicao: new Date().toISOString(),
+  });
 };

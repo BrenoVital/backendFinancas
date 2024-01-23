@@ -8,7 +8,9 @@ const server = express();
 
 server.use(
   cors({
-    origin: process.env.ENABLED_CORS?.split(",") || [],
+    origin: process.env.ENABLED_CORS?.split(",") || [
+      "https://financas-kappa-gray.vercel.app",
+    ],
   })
 );
 

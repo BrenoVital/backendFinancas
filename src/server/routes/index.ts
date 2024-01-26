@@ -4,6 +4,7 @@ import { RendasController } from "../controller/rendas";
 import { CategoriasController } from "../controller/categorias";
 import { UsuariosController } from "../controller/usuarios";
 import { ensureAuthenticated } from "../shared/middleware";
+import { InvestimentosController } from "../controller/investimentos";
 
 const router = Router();
 
@@ -116,6 +117,43 @@ router.delete(
   ensureAuthenticated,
   CategoriasController.deleteByIdValidation,
   CategoriasController.deleteById
+);
+
+// InvestimentosController
+
+router.get(
+  "/investimentos",
+  ensureAuthenticated,
+  InvestimentosController.getAllValidation,
+  InvestimentosController.getAll
+);
+
+router.get(
+  "/investimentos/:id",
+  ensureAuthenticated,
+  InvestimentosController.getByIdValidation,
+  InvestimentosController.getById
+);
+
+router.put(
+  "/investimentos/:id",
+  ensureAuthenticated,
+  InvestimentosController.updateByIdValidation,
+  InvestimentosController.updateById
+);
+
+router.post(
+  "/investimentos",
+  ensureAuthenticated,
+  InvestimentosController.create,
+  InvestimentosController.createQueryValidation
+);
+
+router.delete(
+  "/investimentos/:id",
+  ensureAuthenticated,
+  InvestimentosController.deleteByIdValidation,
+  InvestimentosController.deleteById
 );
 
 // LoginController

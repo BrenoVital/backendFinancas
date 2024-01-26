@@ -3,4 +3,5 @@ export enum ETablesNames {
   renda = "renda",
   categoria = "categoria",
   usuario = "usuario",
+  investimento = "investimento",
 }

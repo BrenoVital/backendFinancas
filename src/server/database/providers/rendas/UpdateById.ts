@@ -4,11 +4,11 @@ import { IRenda } from "../../models";
 
 export const updateById = async (
   id: number,
-  despesa: Omit<IRenda, "id">
+  renda: Omit<IRenda, "id">
 ): Promise<void | Error> => {
   try {
     const result = await Knex(ETablesNames.renda)
-      .update(despesa)
+      .update(renda)
       .where("id", "=", id);
     if (result > 0) return;
     return new Error("Erro ao atualizar a renda");
